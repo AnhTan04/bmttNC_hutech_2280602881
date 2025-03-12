@@ -1,9 +1,5 @@
 from flask import Flask, render_template, request
-from cipher.caesar import CaesarCipher 
-
-
-
-
+from cipher.caesar import CaesarCipher
 app = Flask(__name__)
 
 @app.route("/")

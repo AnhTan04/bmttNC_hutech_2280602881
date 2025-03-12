@@ -1,60 +1,32 @@
-from cipher.case import ALPHABET
+from cipher.caesar import ALPHABET
 
-class CaearCipher :
+class CaesarCipher:
 
-    def __int__(self):
+    def __init__(self):
         self.alphabet = ALPHABET 
 
-    def encrypt_text(self ,text : str , key :int ) -> str:
+    def encrypt_text(self, text: str, key: int) -> str:
         alphabet_len = len(self.alphabet)
-        text = text.upper() 
-        encrypt_text= []
+        text = text.upper()
+        encrypt_text = []
         for letter in text:
-            letter_index = self.alphabet.index(letter)
-            output_index = (letter_index + key) % alphabet_len
-            output_letter = self.alphabet[output_index]
-            encrypt_text.append(output_letter)
-            return "".join(encrypt_text)
+            if letter in self.alphabet:
+                letter_index = self.alphabet.index(letter)
+                output_index = (letter_index + key) % alphabet_len
+                output_letter = self.alphabet[output_index]
+                encrypt_text.append(output_letter)
+            
+        return "".join(encrypt_text)
 
-    
-    def decrypt_text(self ,text : str , key :int ) -> str:
+    def decrypt_text(self, text: str, key: int) -> str:
         alphabet_len = len(self.alphabet)
-        text = text.upper() 
-        decrypt_text= []
+        text = text.upper()
+        decrypt_text = []
         for letter in text:
-            letter_index = self.alphabet.index(letter)
-            output_index = (letter_index - key) % alphabet_len
-            output_letter = self.alphabet[output_index]
-            decrypt_text.append(output_letter)
-from cipher.case import ALPHABET
-
-
-
-
-class CaearCipher :
-
-    def __int__(self):
-        self.alphabet = ALPHABET 
-
-    def encrypt_text(self ,text : str , key :int ) -> str:
-        alphabet_len = len(self.alphabet)
-        text = text.upper() 
-        encrypt_text= []
-        for letter in text :
-            letter_index = self.alphabet.index(letter)
-            output_index = (letter_index + key) % alphabet_len
-            output_letter = self.alphabet[output_index]
-            encrypt_text.append(output_letter)
-            return "".join(encrypt_text)
-
-    
-    def decrypt_text(self ,text : str , key :int ) -> str:
-        alphabet_len = len(self.alphabet)
-        text = text.upper() 
-        decrypt_text= []
-        for letter in text :
-            letter_index = self.alphabet.index(letter)
-            output_index = (letter_index - key) % alphabet_len
-            output_letter = self.alphabet[output_index]
-            decrypt_text.append(output_letter)
-            return "".join(decrypt_text)        
+            if letter in self.alphabet:
+                letter_index = self.alphabet.index(letter)
+                output_index = (letter_index - key) % alphabet_len
+                output_letter = self.alphabet[output_index]
+                decrypt_text.append(output_letter)
+            
+        return "".join(decrypt_text)
